@@ -13,7 +13,7 @@ module Ipay
 
       def search(oid:)
         body = search_params.merge({oid: oid})
-        TransactionStatus.new post("transaction/search", body: body).body
+        Transaction.new post("transaction/search", body: body).body
       end
 
       def push(channel:, phone:, sid:)
