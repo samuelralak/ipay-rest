@@ -3,26 +3,23 @@ require "faraday"
 module Ipay
   module Rest
     class Client
-      BASE_URL="https://apis.ipayafrica.com/payments/v2/"
-      attr_reader :vid, :key, :adapter
+      attr_reader :adapter
 
-      def initialize(vid:, key:, adapter: Faraday.default_adapter)
-        @vid = vid
-        @key = key
+      def initialize(adapter: Faraday.default_adapter)
         @adapter = adapter
       end
 
       def connection
         @connection ||= Faraday.new do |conn|
-          conn.url_prefix = BASE_URL
+          conn.url_prefix = Ipay::Rest::BASE_URL
           conn.request :url_encoded
           conn.response :json, content_type: "application/json"
           conn.adapter @adaptor
         end
       end
 
-      def payments
-
+      def transaction
+        TransactionResource.new(self )
       end
 
       def inspect
