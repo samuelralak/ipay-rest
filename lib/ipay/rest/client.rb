@@ -8,7 +8,7 @@ module Ipay
 
       def initialize(vid:, key:, adapter: Faraday.default_adapter)
         @vid = vid
-        @keu = key
+        @key = key
         @adapter = adapter
       end
 
@@ -19,6 +19,10 @@ module Ipay
           conn.response :json, content_type: "application/json"
           conn.adapter @adaptor
         end
+      end
+
+      def payments
+
       end
 
       def inspect
