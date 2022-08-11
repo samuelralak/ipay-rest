@@ -32,7 +32,7 @@ IPAY_CURRENCY=KES # defaults to kes
 
 ## Usage
 
-```ruby.rbs
+```ruby
 #
 # initialize new client
 # 
