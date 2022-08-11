@@ -22,7 +22,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+client = Ipay::Rest.new(vid: ENV['VENDOR_ID'], key: ENV['SECRET_KEY'])
+client.payments.initiate
+client.payments.push
+client.payments.query
+```
 
 ## Development
 
