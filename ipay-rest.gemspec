@@ -6,13 +6,11 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Samuel Ralak"]
   spec.email         = ["ralakk@hey.com"]
 
-  spec.summary       = %q{iPay REST API Wrapper}
-  spec.description   = %q{iPay REST API Wrapper}
+  spec.summary       = %q{iPay Rest API Wrapper}
+  spec.description   = %q{A Ruby interface to the iPay REST API https://dev.ipayafrica.com/C2B.html}
   spec.homepage      = "https://github.com/samuelralak/ipay-rest"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
-
-  spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/samuelralak/ipay-rest"
