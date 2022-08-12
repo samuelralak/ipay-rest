@@ -20,16 +20,6 @@ jobs:
         with:
           version: 2.6.x
 
-      - name: Publish to GPR
-        run: |
-          bundle config https://rubygems.pkg.github.com/${OWNER} ${OWNER}:${GEM_HOST_API_KEY}
-          gem build *.gemspec
-          mv *.gem gemfiles/
-          gem push --KEY github --host https://rubygems.pkg.github.com/${OWNER} gemfiles/*.gem
-        env:
-          GEM_HOST_API_KEY: ${{secrets.GPR_AUTH_TOKEN}}
-          OWNER: samuelralak
-
       - name: Publish to RubyGems
         run: |
           mkdir -p $HOME/.gem
