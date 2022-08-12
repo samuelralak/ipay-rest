@@ -1,43 +1,23 @@
-name: Ipay::Rest API Wrapper
+
+name: Publish Gem
 
 on:
   push:
     branches:
       - master
-
+    tags:
+      - v*
 jobs:
   build:
-    name: Build + Publish
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@master
-      - name: Set up Ruby 2.6
-        uses: actions/setup-ruby@v1
-        with:
-          version: 2.6.x
+      - uses: actions/checkout@v1
 
-      - name: Publish to GPR
-        run: |
-          mkdir -p $HOME/.gem
-          touch $HOME/.gem/credentials
-          chmod 0600 $HOME/.gem/credentials
-          printf -- "---\n:github: Bearer ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
-          gem build *.gemspec
-          mv *.gem gemfiles/
-          gem push --KEY github --host https://rubygems.pkg.github.com/${OWNER} gemfiles/*.gem
+      - name: Release Gem
+        if: contains(github.ref, 'refs/tags/v')
+        uses: cadwallion/publish-rubygems-action@master
         env:
-          GEM_HOST_API_KEY: ${{secrets.GPR_AUTH_TOKEN}}
-          OWNER: samuelralak
-
-      - name: Publish to RubyGems
-        run: |
-          mkdir -p $HOME/.gem
-          touch $HOME/.gem/credentials
-          chmod 0600 $HOME/.gem/credentials
-          printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
-          gem build *.gemspec
-          mv *.gem gemfiles/
-          gem push gemfiles/*.gem
-        env:
-          GEM_HOST_API_KEY: ${{secrets.RUBYGEMS_AUTH_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.GPR_AUTH_TOKEN}}
+          RUBYGEMS_API_KEY: ${{secrets.RUBYGEMS_AUTH_TOKEN}}
+          RELEASE_COMMAND: rake release
