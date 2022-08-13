@@ -22,10 +22,15 @@ module Ipay
 
       def handle_response(response)
         status = response.body['status'] || response.body['header_status']
+        message = response.body['text'] || response.body['error']
 
         case status
         when 0
-          raise Error, response.body['text']
+          raise IpayError, message
+        when 2
+          raise IpayError, message
+        when 400..599
+          raise Error, message
         when "fe2707etr5s4wq"
           raise FailedTransactionError
         when "bdi6p2yy76etrs"

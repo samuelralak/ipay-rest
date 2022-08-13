@@ -4,7 +4,7 @@ require "ipay/rest/constants"
 module Ipay
   module Rest
     autoload :Client, "ipay/rest/client"
-    autoload :Error, "ipay/rest/error"
+    autoload :IpayError, "ipay/rest/error"
     autoload :Object, "ipay/rest/object"
     autoload :Resource, "ipay/rest/resource"
 
@@ -14,5 +14,11 @@ module Ipay
     autoload :UssdPush, 'ipay/rest/objects/ussd_push'
 
     autoload :TransactionResource, 'ipay/rest/resources/transaction'
+
+    autoload :FailedTransactionError, 'ipay/rest/errors/failed_transaction'
+    autoload :OverPaymentError, 'ipay/rest/errors/over_payment'
+    autoload :PaymentDeficitError, 'ipay/rest/errors/payment_deficit'
+    autoload :PendingTransactionError, 'ipay/rest/errors/pending_transaction'
+    autoload :UsedCodeError, 'ipay/rest/errors/used_code'
   end
 end
