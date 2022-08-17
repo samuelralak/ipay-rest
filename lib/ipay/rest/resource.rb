@@ -30,7 +30,7 @@ module Ipay
         when 2
           raise IpayError, message
         when 400..599
-          raise Error, message
+          raise IpayError, message
         when "fe2707etr5s4wq"
           raise FailedTransactionError
         when "bdi6p2yy76etrs"

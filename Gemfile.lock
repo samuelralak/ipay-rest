@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ipay-rest (0.1.1)
+    ipay-rest (0.1.2)
       faraday (~> 2.5)
 
 GEM
